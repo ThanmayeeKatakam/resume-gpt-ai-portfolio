@@ -1,0 +1,13 @@
+PS D:\ResumeGPT\resume-gpt-ai-portfolio> git init
+PS D:\ResumeGPT\resume-gpt-ai-portfolio> New-Item .gitignore -ItemType File
+
+PS D:\ResumeGPT\resume-gpt-ai-portfolio> mkdir backend
+>> mkdir frontend
+PS D:\ResumeGPT\resume-gpt-ai-portfolio> ls
+PS D:\ResumeGPT\resume-gpt-ai-portfolio> cd backend
+PS D:\ResumeGPT\resume-gpt-ai-portfolio\backend> New-Item main.py -ItemType File
+>> New-Item database.py -ItemType File
+>> New-Item models.py -ItemType File
+>> New-Item .env -ItemType File
+>> mkdir services
+PS D:\ResumeGPT\resume-gpt-ai-portfolio\backend> cd ..
