@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { API_URL } from "./api"; // <- use the API_URL constant
+// import { API_URL } from "./api"; // <- use the API_URL constant
+const API_URL = "https://resume-gpt-ai-portfolio.onrender.com";
 
 interface Message {
   role: "user" | "ai";
@@ -13,21 +14,42 @@ const Chat = () => {
   const [sessionId, setSessionId] = useState<number | null>(null);
 
   // Create session when component loads
-  useEffect(() => {
-    const createSession = async () => {
-      try {
-        const response = await fetch(`${API_URL}/session`, {
-          method: "POST"
-        });
-        const data = await response.json();
-        setSessionId(data.session_id);
-      } catch (error) {
-        console.error("Failed to create session");
-      }
-    };
+  // useEffect(() => {
+  //   const createSession = async () => {
+  //     try {
+  //       const response = await fetch(`${API_URL}/session`, {
+  //         method: "POST"
+  //       });
+  //       const data = await response.json();
+  //       setSessionId(data.session_id);
+  //     } catch (error) {
+  //       console.error("Failed to create session");
+  //     }
+  //   };
 
-    createSession();
-  }, []);
+  //   createSession();
+  // }, []);
+
+  useEffect(() => {
+  const createSession = async () => {
+    try {
+      const response = await fetch(`${API_URL}/session`, {
+        method: "POST"
+      });
+
+      if (!response.ok) throw new Error("Server not ready");
+
+      const data = await response.json();
+      setSessionId(data.session_id);
+      console.log("Session created");
+    } catch (error) {
+      console.log("Server waking up... retrying in 3 seconds");
+      setTimeout(createSession, 3000);
+    }
+  };
+
+  createSession();
+}, []);
 
   const sendMessage = async () => {
     if (!input.trim() || !sessionId) return;
