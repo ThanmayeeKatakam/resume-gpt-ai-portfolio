@@ -1,8 +1,10 @@
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
-from database import engine, SessionLocal
-import models
+# from database import engine, SessionLocal
+from backend.database import engine, SessionLocal
+from backend import models
+# import models
 import requests
 import os
 from dotenv import load_dotenv
